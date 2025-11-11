@@ -1,0 +1,410 @@
+/* VARIABLES GLOBALES */
+:root {
+  --primary-yellow: #FFD700;
+  --secondary-green: #00FFC4;
+  --accent-pink: #FF69B4;
+  --bg-dark: #1a0f30;
+  --bg-light: #2c1a4b;
+  --text-light: #fff;
+  --text-dark: #333;
+  --error: #FF4444;
+  --success: #00C851;
+  --info: #33b5e5;
+  --warning: #FFBB33;
+}
+
+/* ESTILOS BÁSICOS */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg-dark) url('https://i.imgur.com/n6Bf4vP.png') repeat;
+  color: var(--text-light);
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+  padding: 1.5rem;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: 700px;
+  width: 100%;
+  background: var(--bg-light);
+  border-radius: 25px;
+  padding: 2rem;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6), 0 0 20px var(--accent-pink);
+  border: 3px solid var(--primary-yellow);
+  animation: neon-glow 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes neon-glow {
+    from { box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6), 0 0 15px var(--accent-pink); }
+    to { box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8), 0 0 25px var(--accent-pink), 0 0 30px var(--secondary-green); }
+}
+
+/* TÍTULOS */
+h1 {
+  font-family: 'Luckiest Guy', cursive;
+  color: var(--primary-yellow);
+  margin-bottom: 0.5rem;
+  font-size: 3.5rem;
+  text-shadow: 4px 4px 0px var(--accent-pink), 6px 6px 0px rgba(0,0,0,0.3);
+  letter-spacing: 2px;
+  line-height: 1;
+}
+
+.subtitle {
+  color: var(--text-light);
+  margin-bottom: 1.5rem;
+  font-size: 1.2rem;
+}
+
+/* SECCIÓN DE WALLET */
+.wallet-section {
+    background: rgba(0,0,0,0.3);
+    border-radius: 15px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    border: 2px dashed var(--secondary-green);
+}
+.hidden {
+    display: none !important;
+}
+
+.connected-wallet-display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.wallet-address-display {
+    background: var(--bg-dark);
+    color: var(--secondary-green);
+    padding: 0.8rem 1.5rem;
+    border-radius: 10px;
+    font-family: monospace;
+    font-size: 1rem;
+    margin-top: 0.8rem;
+    border: 1px solid var(--secondary-green);
+}
+
+.balance-info {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.balance-value {
+  font-size: 2.5rem;
+  color: var(--primary-yellow);
+  font-weight: 700;
+  font-family: 'Luckiest Guy', cursive;
+  text-shadow: 2px 2px 0px var(--accent-pink);
+}
+.balance-value span { font-size: 0.8em; }
+
+/* BOTONES GLOBALES */
+button {
+  background: var(--primary-yellow);
+  color: var(--bg-dark);
+  border: none;
+  border-radius: 10px;
+  padding: 0.9rem 1.8rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  text-transform: uppercase;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+button:hover:not(:disabled) {
+  background: var(--accent-pink);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4), 0 0 10px var(--secondary-green);
+  color: var(--text-light);
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+button:focus {
+  outline: 3px solid var(--secondary-green);
+  outline-offset: 2px;
+}
+
+/* SLOT MACHINE */
+.slot-area {
+  background: linear-gradient(45deg, #000, #333);
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.9), 0 0 25px var(--secondary-green);
+  margin-bottom: 2rem;
+  border: 5px solid var(--secondary-green);
+}
+
+.slot-reels {
+  display: flex;
+  justify-content: space-around;
+  gap: 15px;
+  overflow: hidden;
+  height: 150px;
+  align-items: center;
+  position: relative;
+}
+
+.slot-reel {
+  width: 100px;
+  height: 130px;
+  background: var(--bg-dark);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem; 
+  color: var(--primary-yellow);
+  border: 3px solid var(--accent-pink);
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+}
+.slot-reel img {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+}
+
+.result-message {
+  margin-top: 1.5rem;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--secondary-green);
+  text-shadow: 2px 2px 0px var(--bg-dark);
+  min-height: 40px; 
+}
+
+/* CONTROLES DE JUEGO */
+.controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.bet-info {
+    text-align: left;
+}
+
+.bet-info p {
+    font-size: 0.9rem;
+    color: #ccc;
+}
+
+.bet-amount {
+    font-size: 1.5rem;
+    color: var(--primary-yellow);
+    font-weight: 700;
+    font-family: 'Luckiest Guy', cursive;
+    text-shadow: 1px 1px 0px var(--accent-pink);
+}
+
+#spin-btn {
+    min-width: 180px;
+    font-size: 1.8rem;
+    padding: 1rem 2.5rem;
+    background: linear-gradient(45deg, var(--secondary-green), #00e08f);
+    color: var(--bg-dark);
+    border: 2px solid var(--text-light);
+    box-shadow: 0 7px 20px rgba(0,0,0,0.5);
+}
+#spin-btn:hover:not(:disabled) {
+    background: linear-gradient(45deg, #00e08f, var(--secondary-green));
+    transform: translateY(-4px) scale(1.03);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.6), 0 0 15px var(--text-light);
+}
+#spin-btn.spinning {
+    animation: pulse-spin 0.8s infinite alternate;
+}
+@keyframes pulse-spin {
+    from { transform: scale(1); box-shadow: 0 7px 20px rgba(0,0,0,0.5); }
+    to { transform: scale(1.05); box-shadow: 0 7px 25px rgba(0,0,0,0.7), 0 0 15px var(--secondary-green); }
+}
+
+
+/* INFORMACIÓN DEL TOKEN */
+.token-info {
+    background: var(--bg-light);
+    border-radius: 20px;
+    padding: 2rem;
+    margin-top: 3rem;
+    border: 2px dashed var(--primary-yellow);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+}
+.token-info h3 {
+    font-family: 'Luckiest Guy', cursive;
+    color: var(--primary-yellow);
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    text-shadow: 2px 2px 0px var(--accent-pink);
+}
+.token-details {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    text-align: left;
+}
+.token-detail-item {
+    background: rgba(0,0,0,0.2);
+    padding: 1rem;
+    border-radius: 10px;
+    border-left: 5px solid var(--secondary-green);
+}
+.token-detail-item p { margin-bottom: 0.3rem; }
+.token-detail-item strong { color: var(--secondary-green); }
+.token-detail-item span { color: var(--primary-yellow); font-weight: 600; }
+
+/* ESTILOS DE UTILIDAD (CARGA Y NOTIFICACIONES) */
+.loading {
+  display: none;
+  margin: 1.5rem 0;
+  color: var(--secondary-green);
+  font-size: 1.1rem;
+}
+
+.spinner {
+  border: 4px solid rgba(0, 255, 196, 0.3);
+  border-radius: 50%;
+  border-top: 4px solid var(--secondary-green);
+  width: 35px;
+  height: 35px;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 0.8rem;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.notification {
+  position: fixed;
+  top: 25px;
+  right: 25px;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  color: white;
+  font-weight: 600;
+  z-index: 1000;
+  transform: translateX(500px);
+  opacity: 0;
+  transition: all 0.5s ease-out;
+  max-width: 350px;
+  word-break: break-word;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+.notification.show { transform: translateX(0); opacity: 1; }
+.notification.success { background: var(--success); }
+.notification.error { background: var(--error); }
+.notification.info { background: var(--info); }
+.notification.warning { background: var(--warning); color: var(--text-dark); }
+
+.footer-note {
+    font-size: 0.8rem; 
+    color: #777; 
+    margin-top: 2rem;
+}
+
+/* Efectos de victoria */
+@keyframes jackpot-glow {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+.jackpot-win {
+  animation: jackpot-glow 0.5s ease-in-out 3;
+}
+
+.win-effect {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  background: radial-gradient(circle, transparent 50%, rgba(255,215,0,0.3) 100%);
+  animation: win-fade 2s ease-out;
+}
+
+@keyframes win-fade {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* Mejoras de accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Estados de los botones mejorados */
+button:focus {
+  outline: 3px solid var(--secondary-green);
+  outline-offset: 2px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+  body { padding: 1rem; }
+  h1 { font-size: 2.5rem; }
+  .subtitle { font-size: 1rem; }
+  .balance-value { font-size: 2rem; }
+  .slot-reel { width: 90px; height: 120px; font-size: 2.5rem; }
+  #spin-btn { font-size: 1.5rem; padding: 0.8rem 1.5rem; min-width: 140px; }
+  .notification { left: 10px; right: 10px; max-width: none; }
+  .token-info { padding: 1.5rem; }
+  .token-info h3 { font-size: 1.5rem; }
+  .controls {
+      flex-direction: column;
+      gap: 1rem;
+  }
+  .bet-info {
+      text-align: center;
+  }
+}
+
+/* Mejoras para móviles específicas */
+@media (max-width: 480px) {
+  .slot-reels {
+    gap: 8px;
+    height: 120px;
+  }
+  
+  .slot-reel {
+    width: 70px;
+    height: 100px;
+    font-size: 2rem;
+  }
+  
+  h1 {
+    font-size: 2rem;
+  }
+}
